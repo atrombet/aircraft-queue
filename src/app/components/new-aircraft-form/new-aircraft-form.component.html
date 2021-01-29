@@ -1,0 +1,15 @@
+<div [formGroup]="newAircraftForm">
+  <div>
+    <select formControlName="type" placeholder="Select Type">
+      <option [value]="Type.Passenger">{{Type.Passenger}}</option>
+      <option [value]="Type.Cargo">{{Type.Cargo}}</option>
+    </select>
+  </div>
+  <div>
+    <select formControlName="size" placeholder="Select Size">
+      <option [value]="Size.Large">{{Size.Large}}</option>
+      <option [value]="Size.Small">{{Size.Small}}</option>
+    </select>
+  </div>
+  <button (click)="onSubmit()">Add</button>
+</div>

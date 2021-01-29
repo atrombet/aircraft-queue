@@ -1,0 +1,7 @@
+@import "./_variables";
+
+select {
+  font-size: $font-size;
+  border-radius: $small;
+  padding: $small;
+}

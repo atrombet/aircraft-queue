@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./styles/utilities";
+@import "./styles/button";
+@import "./styles/select";
+@import "./styles/_variables";
+
+html {
+  font-family: $default-font;
+}
+
+body {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $xlarge;
+}

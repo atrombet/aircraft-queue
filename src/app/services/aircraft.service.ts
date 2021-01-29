@@ -23,8 +23,10 @@ export class AircraftService {
    */
   public queue$(): Observable<Aircraft[]> {
     return this.aircraft$.pipe(
-      map((aircraftMap: Map<number, Aircraft>) => {
-        return Array.from(aircraftMap.values());
+      this.aircraftArrayFromMap(),
+      map((aircraft: Aircraft[]) => {
+        // Filter out aircraft that have been launched already.
+        return aircraft.filter(a => !a.hasBeenLaunched);
       }),
       this.sortAircraft()
     );
@@ -34,11 +36,7 @@ export class AircraftService {
    * Returns the next Aircraft in the queue.
    */
   public nextInQueue$(): Observable<Aircraft> {
-    return this.aircraft$.pipe(
-      map((aircraftMap: Map<number, Aircraft>) => {
-        return Array.from(aircraftMap.values());
-      }),
-      this.sortAircraft(),
+    return this.queue$().pipe(
       map((sortedAircraft: Aircraft[]) => {
         const aircraftQueue: Aircraft[] = [ ...sortedAircraft ];
         return aircraftQueue.shift();
@@ -122,7 +120,7 @@ export class AircraftService {
         const newAircraftMap = new Map(aircraftMap);
         newAircraftMap.set(next.id, next);
       })
-    );
+    ).subscribe();
   }
 
   /**

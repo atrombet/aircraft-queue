@@ -1,0 +1,14 @@
+<div class="launched mbl">
+  <h2 class="launched__label flex-between">
+    <span class="flex align-center">
+      <span>{{aircraft.type}}</span>
+      <span class="launched__sizeTag mll {{aircraft.size}}">{{aircraft.size}}</span>
+    </span>
+    <span class="mll text-light font-large">ID: {{aircraft.id}}</span>
+  </h2>
+  <div>
+    <span class="mrm font-small">Launched at:</span>
+    <span class="bold mrm">{{aircraft.launchTime.toLocaleTimeString()}}</span>
+    <span class="text-light font-small">{{aircraft.launchTime.toLocaleDateString()}}</span>
+  </div>
+</div>

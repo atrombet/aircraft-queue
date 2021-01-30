@@ -52,7 +52,8 @@ export class AircraftService {
       this.aircraftArrayFromMap(),
       map((aircraft: Aircraft[]) => {
         return aircraft.filter(a => a.hasBeenLaunched);
-      })
+      }),
+      this.sortByLastLaunched()
     );
   }
 
@@ -195,6 +196,17 @@ export class AircraftService {
           ...aircraft.filter(a => a.type === AircraftType.Passenger).sort(this.sortBySize),
           ...aircraft.filter(a => a.type === AircraftType.Cargo).sort(this.sortBySize)
         ];
+      })
+    );
+  }
+
+  /**
+   * Sorts a list of launched aircraft with the most recent first.
+   */
+  private sortByLastLaunched(): any {
+    return pipe(
+      map((aircraft: Aircraft[]) => {
+        return aircraft.sort((a, b) => b.launchTime.getTime() - a.launchTime.getTime());
       })
     );
   }

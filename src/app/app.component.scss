@@ -5,5 +5,14 @@
   margin: auto;
   display: grid;
   grid-template-columns: 4fr 2fr;
-  grid-column-gap: $xlarge;
-}
+  grid-template-rows: 227px auto;
+  grid-template-areas:
+    "queue form"
+    "queue history";
+    grid-column-gap: $xlarge;
+    grid-row-gap: $xlarge;
+  }
+
+  .grid__queue { grid-area: queue; }
+  .grid__form { grid-area: form; }
+  .grid__history { grid-area: history; }

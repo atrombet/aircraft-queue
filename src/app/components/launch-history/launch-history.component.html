@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="mbl font-large bold">Launch History</div>
+  <ng-container *ngIf="!!launchedAircraft?.length; else noAircraft">
+    <launched-aircraft *ngFor="let aircraft of launchedAircraft" [aircraft]="aircraft"></launched-aircraft>
+  </ng-container>
+</div>
+
+<ng-template #noAircraft>
+  <div class="italic">No aircraft have been launched.</div>
+</ng-template>

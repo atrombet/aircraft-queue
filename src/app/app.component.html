@@ -1,6 +1,7 @@
 <div class="grid">
-  <div *ngIf="aircraftService.queue$() | async as aircraftList">
-    <aircraft-queue [aircraftList]="aircraftList" (dequeue)="dequeue($event)" (launch)="launch()"></aircraft-queue>
+  <div class="grid__queue">
+    <aircraft-queue [aircraftList]="aircraftService.queue$() | async" (dequeue)="dequeue($event)" (launch)="launch()"></aircraft-queue>
   </div>
-  <new-aircraft-form (addNewAircraft)="addAircraft($event)"></new-aircraft-form>
+  <new-aircraft-form class="grid__form" (addNewAircraft)="addAircraft($event)"></new-aircraft-form>
+  <launch-history class="grid__history" [launchedAircraft]="aircraftService.launchedAircraft$() | async"></launch-history>
 </div>

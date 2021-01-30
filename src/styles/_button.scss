@@ -10,9 +10,30 @@ button {
   background-color: $accent-color;
   transition: background-color 0.1s linear;
   cursor: pointer;
+  max-height: 32px;
 
   &:hover {
     background-color: darken($accent-color, 20%);
     transition: background-color 0.1s linear;
+  }
+
+  &[disabled] {
+    cursor: default;
+    
+    &:hover {
+      background-color: $accent-color;
+      transition: background-color 0.1s linear;
+    } 
+  }
+
+  &.flat {
+    color: white;
+    background-color: #FFFFFF00;
+    border: solid 1px white;
+
+    &:hover {
+      background-color: #FFFFFF22;
+      transition: background-color 0.1s linear;
+    }
   }
 }

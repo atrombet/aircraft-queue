@@ -301,3 +301,23 @@
 .italic {
   font-style: italic;
 }
+
+.bold {
+  font-weight: 700;
+}
+
+.font-normal {
+  font-size: $font-size;
+}
+
+.font-large {
+  font-size: $font-size-large;
+}
+
+.font-small {
+  font-size: $font-size-small;
+}
+
+.text-light {
+  color: $text-color-light
+}

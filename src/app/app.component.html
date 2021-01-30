@@ -1,7 +1,6 @@
-<div class="flex-between">
-  <aircraft-queue [aircraftList]="aircraftService.queue$() | async"></aircraft-queue>
-  <div>
-    <new-aircraft-form (addNewAircraft)="addAircraft($event)"></new-aircraft-form>
-    <button id="launchButton" (click)="launch()">Launch</button>
+<div class="grid">
+  <div *ngIf="aircraftService.queue$() | async as aircraftList">
+    <aircraft-queue [aircraftList]="aircraftList" (dequeue)="dequeue($event)" (launch)="launch()"></aircraft-queue>
   </div>
+  <new-aircraft-form (addNewAircraft)="addAircraft($event)"></new-aircraft-form>
 </div>

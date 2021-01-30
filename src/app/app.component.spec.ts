@@ -9,6 +9,7 @@ class MockAircraftService {
   public createNewAircraft(): void {}
   public enqueue(): void {}
   public launch(): void {}
+  public dequeue(): void {}
 }
 
 describe('AppComponent', () => {
@@ -51,13 +52,23 @@ describe('AppComponent', () => {
     expect(aircraftService.enqueue).toHaveBeenCalled();
   });
 
-  it('should launch an aircraft using teh aircraft service', () => {
+  it('should launch an aircraft using the aircraft service', () => {
     const { fixture, component, aircraftService } = setup();
-    const launchButton = fixture.debugElement.query(By.css('#launchButton'));
+    const aircraftQueue = fixture.debugElement.query(By.css('aircraft-queue'));
     spyOn(component, 'launch').and.callThrough();
     spyOn(aircraftService, 'launch');
-    launchButton.triggerEventHandler('click', {});
+    aircraftQueue.triggerEventHandler('launch', {});
     expect(component.launch).toHaveBeenCalled();
     expect(aircraftService.launch).toHaveBeenCalled();
+  });
+
+  it('should dequeue an aircraft using the aircraft service', () => {
+    const { fixture, component, aircraftService } = setup();
+    const aircraftQueue = fixture.debugElement.query(By.css('aircraft-queue'));
+    spyOn(component, 'dequeue').and.callThrough();
+    spyOn(aircraftService, 'dequeue');
+    aircraftQueue.triggerEventHandler('dequeue', {});
+    expect(component.dequeue).toHaveBeenCalled();
+    expect(aircraftService.dequeue).toHaveBeenCalled();
   });
 });

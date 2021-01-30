@@ -25,4 +25,12 @@ export class AppComponent {
   public launch(): void {
     this.aircraftService.launch();
   }
+
+  /**
+   * Dequeues the aircraft with the given ID.
+   * @param id - The ID of the aircraft to dequeue.
+   */
+  public dequeue(id: number): void {
+    this.aircraftService.dequeue(id);
+  }
 }

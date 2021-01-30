@@ -1,15 +1,18 @@
 <div class="newAircraftForm" [formGroup]="newAircraftForm">
-  <div>
-    <select formControlName="type" placeholder="Select Type">
-      <option [value]="Type.Passenger">{{Type.Passenger}}</option>
+  <div class="mbl font-large bold">Enqueue an Aircraft</div>
+  <div class="mbl">
+    <label for="size">Aircraft Type</label>
+    <select name="type" formControlName="type">
+      <option [value]="Type.Passenger" selected>{{Type.Passenger}}</option>
       <option [value]="Type.Cargo">{{Type.Cargo}}</option>
     </select>
   </div>
-  <div>
-    <select formControlName="size" placeholder="Select Size">
-      <option [value]="Size.Large">{{Size.Large}}</option>
+  <div class="mbl">
+    <label for="size">Aircraft Size</label>
+    <select name="size" formControlName="size">
+      <option [value]="Size.Large" selected>{{Size.Large}}</option>
       <option [value]="Size.Small">{{Size.Small}}</option>
     </select>
   </div>
-  <button (click)="onSubmit()">Add</button>
+  <button [disabled]="newAircraftForm.invalid" (click)="onSubmit()">Enqueue</button>
 </div>

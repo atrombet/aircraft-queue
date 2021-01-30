@@ -1,0 +1,30 @@
+@import "../../../styles/_variables";
+
+.aircraft {
+  padding: $large;
+  background-color: $bg-color-dark;
+  border-radius: $medium;
+}
+
+.aircraft__label {
+  text-transform: capitalize;
+  margin-top: 0;
+  margin-bottom: $large;
+}
+
+.aircraft__sizeTag {
+  text-transform: uppercase;
+  font-size: $font-size;
+  line-height: $font-size;
+  padding: $small $large;
+  border-radius: 11px;
+  font-weight: 400;
+
+  &.large {
+    background-color: #9C27B0;
+  }
+
+  &.small {
+    background-color: #E91E63;
+  }
+}

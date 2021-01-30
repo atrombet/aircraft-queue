@@ -21,15 +21,14 @@ export class NewAircraftFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.newAircraftForm = this.fb.group({
-      type: [null, Validators.required],
-      size: [null, Validators.required]
+      type: [AircraftType.Passenger, Validators.required],
+      size: [AircraftSize.Large, Validators.required]
     });
   }
 
   public onSubmit(): void {
     if (this.newAircraftForm.valid) {
       this.addNewAircraft.emit(this.newAircraftForm.value);
-      this.newAircraftForm.reset();
     } else {
       console.error('Invalid form');
     }

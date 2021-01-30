@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Aircraft } from '../../interfaces';
 
 @Component({
@@ -7,8 +7,8 @@ import { Aircraft } from '../../interfaces';
   styleUrls: ['./aircraft.component.scss']
 })
 export class AircraftComponent {
-  @Input() aircraft: Aircraft;
+  @Input() public aircraft: Aircraft;
+  @Output() public dequeue = new EventEmitter<number>();
 
   constructor() { }
-
 }

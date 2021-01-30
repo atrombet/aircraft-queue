@@ -26,7 +26,7 @@ export class AircraftService {
       this.aircraftArrayFromMap(),
       map((aircraft: Aircraft[]) => {
         // Filter out aircraft that have been launched already.
-        return aircraft.filter(a => !a.hasBeenLaunched);
+        return aircraft.filter(a => a.isEnqueued);
       }),
       this.sortAircraft()
     );
@@ -51,7 +51,7 @@ export class AircraftService {
     return this.aircraft$.pipe(
       this.aircraftArrayFromMap(),
       map((aircraft: Aircraft[]) => {
-        return aircraft.filter(a => !!a.hasBeenLaunched);
+        return aircraft.filter(a => a.hasBeenLaunched);
       })
     );
   }
@@ -115,10 +115,31 @@ export class AircraftService {
     }).pipe(
       tap(({ next, aircraftMap }: { next: Aircraft, aircraftMap: Map<number, Aircraft> }) => {
         next.hasBeenLaunched = true;
+        next.isEnqueued = false;
         next.launchTime = new Date();
         // Clone the aircraft map.
         const newAircraftMap = new Map(aircraftMap);
         newAircraftMap.set(next.id, next);
+        this.aircraft$.next(newAircraftMap);
+      })
+    ).subscribe();
+  }
+
+  /**
+   * Dequeues an aircraft without launching it.
+   * @param id - The ID of the aircraft to dequeue.
+   */
+  public dequeue(id: number): void {
+    this.aircraft$.pipe(
+      take(1),
+      tap((aircraftMap: Map<number, Aircraft>) => {
+        // Clone the aircraft map.
+        const newAircraftMap = new Map(aircraftMap);
+        newAircraftMap.set(id, {
+          ...newAircraftMap.get(id),
+          isEnqueued: false
+        });
+        this.aircraft$.next(newAircraftMap);
       })
     ).subscribe();
   }

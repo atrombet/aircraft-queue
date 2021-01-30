@@ -1,1 +1,18 @@
-<div>{{aircraft | json}}</div>
+<div class="aircraft mbl">
+  <h2 class="aircraft__label flex-between">
+    <span class="flex align-center">
+      <span>{{aircraft.type}}</span>
+      <!-- <span class="mll text-light">|</span> -->
+      <span class="aircraft__sizeTag mll {{aircraft.size}}">{{aircraft.size}}</span>
+    </span>
+    <span class="mll text-light font-large">ID: {{aircraft.id}}</span>
+  </h2>
+  <div class="flex-between align-end">
+    <div>
+      <div class="mbm">Enqueued at:</div>
+      <div class="text-light font-small mbs">{{aircraft.enqueueTime.toLocaleDateString()}}</div>
+      <div class="bold">{{aircraft.enqueueTime.toLocaleTimeString()}}</div>
+    </div>
+    <button class="flat" (click)="dequeue.emit(aircraft.id)">Dequeue</button>
+  </div>
+</div>

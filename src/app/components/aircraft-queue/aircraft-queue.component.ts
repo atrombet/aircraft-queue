@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Aircraft } from '../../interfaces';
 
 @Component({
@@ -8,7 +8,6 @@ import { Aircraft } from '../../interfaces';
 })
 export class AircraftQueueComponent {
   @Input() aircraftList: Aircraft[];
-
-  constructor() { }
-
+  @Output() public dequeue = new EventEmitter<number>();
+  @Output() public launch = new EventEmitter<void>();
 }

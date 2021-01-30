@@ -1,9 +1,9 @@
 <div>
   <h1 class="flex-between">
     <span>Queue:</span>
-    <button id="launchButton" [disabled]="!aircraftList.length" (click)="launch.emit()">Launch</button>
+    <button id="launchButton" [disabled]="!aircraftList?.length" (click)="launch.emit()">Launch</button>
   </h1>
-  <ng-container *ngIf="!!aircraftList.length; else noAircraft">
+  <ng-container *ngIf="!!aircraftList?.length; else noAircraft">
     <aircraft *ngFor="let aircraft of aircraftList" [aircraft]="aircraft" (dequeue)="dequeue.emit($event)"></aircraft>
   </ng-container>
 </div>

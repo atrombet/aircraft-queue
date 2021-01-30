@@ -26,6 +26,9 @@ export class NewAircraftFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles a user click on the Enqueue button.
+   */
   public onSubmit(): void {
     if (this.newAircraftForm.valid) {
       this.addNewAircraft.emit(this.newAircraftForm.value);
